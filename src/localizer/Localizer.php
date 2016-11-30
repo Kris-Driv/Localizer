@@ -311,7 +311,6 @@ class Localizer {
 			$arguments[1] = $arguments[1] ?? [];
 			$arguments[2] = $arguments[2] ?? null;
 			$arguments[3] = $name;
-			var_dump($arguments);
 			return call_user_func_array(__CLASS__."::trans", $arguments);
 		}
 	}
