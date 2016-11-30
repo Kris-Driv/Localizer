@@ -21,11 +21,11 @@ $localizer->get('example.line');
 Pointing to file is redundant if the key is unique in the language so you can simply call ```php $localizer->get('line') ```
 
 Every Localizer object is saved into static variable in Localizer class and manage them with static functions
-```
+```php
 Localizer::trans('line')
 ```
 If you don't provide locale code then Localizer::DEFAULT_LANGUAGE ("en") will be used. Also you can use this method
-```
+```php
 Localizer::en('line');
 ```
 Each of functions above accepts these next two arguments: ```php ..., array $params = [], string $default = null```
