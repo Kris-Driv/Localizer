@@ -31,4 +31,4 @@ Localizer::en('line');
 Each of functions above accepts these next two arguments: ```php ..., array $params = [], string $default = null```
 
 ###Example:
-See [this example](https://github.com/Chris-Prime/LibLoader-Example
+See [this example](https://github.com/Chris-Prime/LibLoader-Example)
