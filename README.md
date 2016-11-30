@@ -18,7 +18,7 @@ Get english text under key 'line' from file example
 ```php
 $localizer->get('example.line');
 ```
-Pointing to file is redundant if the key is unique in the language so you can simply call ```php $localizer->get('line') ```
+Pointing to file is redundant if the key is unique in the language so you can simply call ``` $localizer->get('line') ```
 
 Every Localizer object is saved into static variable in Localizer class and manage them with static functions
 ```php
@@ -28,7 +28,7 @@ If you don't provide locale code then Localizer::DEFAULT_LANGUAGE ("en") will be
 ```php
 Localizer::en('line');
 ```
-Each of functions above accepts these next two arguments: ```php ..., array $params = [], string $default = null```
+Each of functions above accepts these next two arguments: ``` ..., array $params = [], string $default = null```
 
 ###Example:
 See [this example](https://github.com/Chris-Prime/LibLoader-Example)
