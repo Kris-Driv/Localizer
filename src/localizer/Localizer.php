@@ -262,7 +262,20 @@ class Localizer {
 	 * @param string $target
 	 */
 	public function transferLanguages(string $source, string $target) {
-		# TODO
+	    $dir = opendir($source); 
+	    @mkdir($target); 
+	    while(false !== ( $file = readdir($dir)) ) { 
+	        if (( $file != '.' ) && ( $file != '..' )) { 
+	            if ( is_dir($source . '/' . $file) ) { 
+	            	// recursive
+	                $this->transferLanguages($source . '/' . $file,$target . '/' . $file); 
+	            } 
+	            else { 
+	                copy($source . '/' . $file,$target . '/' . $file); 
+	            } 
+	        } 
+	    } 
+	    closedir($dir); 
 	}
 
 	/**
