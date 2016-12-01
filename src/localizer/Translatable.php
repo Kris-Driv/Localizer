@@ -65,4 +65,8 @@ class Translatable {
     return Localizer::{$locale}($this->params, $this->default);
   }
   
+  public function __toString() {
+    return $this->get(); 
+  }
+  
 }
