@@ -18,7 +18,7 @@ class Translatable {
    /** @type string */
   public $key;
   
-  public function __construct(string $key, array $params = [], string $default = null, string $locale = Localizer::DEFAULT_LANGUAGE) : Translatable {
+  public function __construct(string $key, array $params = [], string $default = null, string $locale = Localizer::DEFAULT_LOCALE) {
     $this->key = $key;
     $this->params = $params;
     $this->default = $default;
@@ -62,7 +62,7 @@ class Translatable {
   
   public function get(string $locale = null) {
     $locale = $locale ?? $this->locale;
-    return Localizer::{$locale}($this->params, $this->default);
+    return Localizer::{$locale}($this->key, $this->params, $this->default);
   }
   
   public function __toString() {
