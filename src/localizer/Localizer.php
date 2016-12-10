@@ -268,7 +268,7 @@ class Localizer {
 	        if (( $file != '.' ) && ( $file != '..' )) { 
 	            if ( is_dir($source . '/' . $file) ) { 
 	            	// recursive
-	                $this->transferLanguages($source . '/' . $file,$target . '/' . $file); 
+	                self::transferLanguages($source . '/' . $file,$target . '/' . $file); 
 	            } 
 	            else { 
 	                copy($source . '/' . $file,$target . '/' . $file); 
