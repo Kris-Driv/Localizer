@@ -1,7 +1,9 @@
 <?php
 namespace localizer;
 
-class Translatable {
+use pocketmine\event\TextContainer;
+
+class Translatable extends TextContainer {
   
   /**
    * ISO-639-1 language code
@@ -65,8 +67,12 @@ class Translatable {
     return Localizer::{$locale}($this->key, $this->params, $this->default);
   }
   
+  public function getText() {
+   return $this->get(); 
+  }
+  
   public function __toString() {
-    return $this->get(); 
+    return $this->getText(); 
   }
   
 }
