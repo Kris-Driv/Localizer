@@ -261,7 +261,7 @@ class Localizer {
 	 * @param string $source
 	 * @param string $target
 	 */
-	public function transferLanguages(string $source, string $target) {
+	public static function transferLanguages(string $source, string $target) {
 	    $dir = opendir($source); 
 	    @mkdir($target); 
 	    while(false !== ( $file = readdir($dir)) ) { 
