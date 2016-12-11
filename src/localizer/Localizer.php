@@ -78,6 +78,8 @@ class Localizer {
 	public $date_short = "";
 	public $date_long = "";
 	public $time = "";
+	
+	private static $parser;
 
 	/**
 	 *
@@ -167,6 +169,11 @@ class Localizer {
 		}
 		return false;
 	}
+	
+	public static function setParser(callable $parser) {
+		self::$parser = $parser;	
+	}
+	
 	/**
 	 * Read language file. Supported format: php (default), json and yaml.
 	 * @param string $file
@@ -240,7 +247,7 @@ class Localizer {
 		foreach ($params as $name => $value) {
 			$text = str_replace(":$name", $value, $text);
 		}
-		return $text;
+		return self::$parser ? call_user_func(self::$parser, $text) : $text;
 	}
 
 	public static function trans(string $key, array $params = [], string $default = null, string $locale = self::DEFAULT_LOCALE) {
