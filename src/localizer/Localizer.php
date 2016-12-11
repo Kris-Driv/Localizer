@@ -58,16 +58,14 @@ class Localizer {
 	 * @var array
 	 */
 	private $data = [];
+
 	/**
 	 * The language
 	 * @var string
 	 */
 	private $locale;
-	/**
-	 * Fallback language
-	 * @var string
-	 */
-	private $fallbackLocale = self::DEFAULT_LOCALE;
+
+	public static $globalLocale = self::DEFAULT_LOCALE;
 
 	/*
 	 * Formats
@@ -87,24 +85,14 @@ class Localizer {
 	 * @param string $directory of languages
 	 * @param string $fallbackLocale = null
 	 */
-	public function __construct(string $locale, string $directory, string $fallbackLocale = null) {
-		if($fallbackLocale) 
-		{
-			if(self::checkLanguageExistence($fallbackLocale)) 
-			{
-				$this->fallbackLocale = $fallbackLocale;
-			}
-		}
-		if(self::checkLanguageExistence($locale))
-		{
+	public function __construct(string $locale, string $directory) {
+		if(self::checkLanguageExistence($locale)) {
 			$this->locale = $locale;
 			$this->loadLanguage($directory, $locale);
+		} else {
+			throw new \InvalidArgumentException("Language '$locale' does not exist");
 		}
-		else 
-		{
-			$this->loadLanguage($directory, $this->fallbackLanguage);
-		}
-		self::$localizers[$this->locale][] = $this;
+		self::$localizers[strtolower(trim($this->locale))][] = $this;
 	}
 	/**
 	 * Loads the language files from directory
@@ -250,16 +238,15 @@ class Localizer {
 		return self::$parser ? call_user_func(self::$parser, $text) : $text;
 	}
 
-	public static function trans(string $key, array $params = [], string $default = null, string $locale = self::DEFAULT_LOCALE) {
+	public static function trans(string $key, array $params = [], string $default = null, $locale = null) {
+		$locale = $locale ?? self::$globalLocale;
 		$key = strtolower($key);
-		$locale = strtolower($locale);
-		$r = $key;
 		if(isset(self::$localizers[$locale])) {
 			foreach(self::$localizers[$locale] as $localizer) {
 				if(($r = $localizer->get($key, $params, $default)) !== $key) return $r;
 			}
 		}
-		return $r;
+		return $r ?? $key;
 	}
 
 	/**
