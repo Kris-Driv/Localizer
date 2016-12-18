@@ -248,6 +248,10 @@ class Localizer {
 		}
 		return $r ?? $key;
 	}
+	
+	public static function translatable(string $key, array $params = [], string $default = null, $locale = null) : Translatable {
+		return new Translatable($key, $params, $default, $locale);	
+	}
 
 	/**
 	 * Copies $source folder and its contents recursively to $target
