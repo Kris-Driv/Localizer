@@ -249,7 +249,7 @@ class Localizer {
 		return $r ?? $key;
 	}
 	
-	public static function translatable(string $key, array $params = [], string $default = null, $locale = null) : Translatable {
+	public static function translatable(string $key, array $params = [], string $default = null, $locale = self::DEFAULT_LOCALE) : Translatable {
 		return new Translatable($key, $params, $default, $locale);	
 	}
 
