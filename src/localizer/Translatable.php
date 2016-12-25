@@ -45,7 +45,7 @@ class Translatable extends TextContainer {
     return $this;
   }
   
-  public function setParam(string $name, $value) :Translatable {
+  public function setParam(string $name, $value) : Translatable {
     $this->params[$name] = $value;
     return $this;
   }
@@ -53,6 +53,10 @@ class Translatable extends TextContainer {
   public function setDefault($default) : Translatable {
     $this->default = $default; 
     return $this;
+  }
+
+  public function getKey() : string {
+    return $this->key;
   }
   
   /*
