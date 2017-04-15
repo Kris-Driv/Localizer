@@ -94,6 +94,14 @@ class Localizer {
 		}
 		self::$localizers[strtolower(trim($this->locale))][] = $this;
 	}
+	
+	/**
+	 * Deletes all loaded data
+	 */
+	public static function clean() {
+		self::$localizers = [];	
+	}
+	
 	/**
 	 * Loads the language files from directory
 	 *
@@ -211,7 +219,6 @@ class Localizer {
 	}
 
 	public function get(string $identifier, array $params = [], string $default = null) : string {
-		$identifier = strtolower($identifier);
 		$ps = explode(".", $identifier);
 		if(count($ps) > 1) {
 			$name = $ps[0];
